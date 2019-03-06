@@ -16,7 +16,7 @@ import android_serialport_api.SerialPort;
  * Description:
  */
 public class SerialUtils {
-    private static final String CHUAN = "/dev/ttyS2";//ttymxc2
+    private static final String CHUAN = "/dev/ttymxc2";//ttymxc2  ttyS2
     private static final int BOTE = 9600;
 
     private final String TAG = "SerialPortUtils";
@@ -26,6 +26,7 @@ public class SerialUtils {
     private SerialPort serialPort = null;
     public InputStream inputStream = null;
     public OutputStream outputStream = null;
+
 
     /**
      * 打开串口
@@ -99,7 +100,7 @@ public class SerialUtils {
 
         int j = 0;
 
-        for(int i = 0; i < hexlen; i += 2) {
+        for (int i = 0; i < hexlen; i += 2) {
             result[j] = HexToByte(inHex.substring(i, i + 2));
             ++j;
         }
@@ -112,7 +113,7 @@ public class SerialUtils {
     }
 
     public static byte HexToByte(String inHex) {
-        return (byte)Integer.parseInt(inHex, 16);
+        return (byte) Integer.parseInt(inHex, 16);
     }
 
 //    public void sendSerialPort(String data) {

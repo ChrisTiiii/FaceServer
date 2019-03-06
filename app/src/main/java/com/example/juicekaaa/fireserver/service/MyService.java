@@ -25,30 +25,6 @@ public class MyService extends Service {
         getMac();
         initSeceive();
         Log.e(TAG, MAC);
-        PreferencesUtil.initPrefs(this);
-        // 使用人脸1：n时使用
-        DBManager.getInstance().init(this);
-        //单目RGB活体, 请选用普通USB摄像头
-        PreferencesUtil.putInt(GlobalSet.TYPE_LIVENSS, GlobalSet.TYPE_RGB_LIVENSS);
-        //生活照
-        PreferencesUtil.putInt(GlobalSet.TYPE_MODEL, GlobalSet.RECOGNIZE_LIVE);
-        FaceSDKManager.getInstance().init(this, new FaceSDKManager.SdkInitListener() {
-            @Override
-            public void initStart() {
-//                toast("开始初始化SDK");
-            }
-
-            @Override
-            public void initSuccess() {
-//                toast("SDK初始化成功");
-            }
-
-            @Override
-            public void initFail(int errorCode, String msg) {
-//                toast("SDK初始化失败:" + msg);
-            }
-        });
-
     }
 
     @Override

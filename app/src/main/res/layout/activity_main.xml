@@ -43,7 +43,8 @@
             android:layout_weight="1"
             android:background="@drawable/setting_item_selector"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="@dimen/widget_size_30"
@@ -67,7 +68,8 @@
             android:layout_weight="1"
             android:background="@drawable/setting_item_selector"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="@dimen/widget_size_30"
@@ -78,7 +80,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="退出"
                 android:textColor="@android:color/black" />
         </LinearLayout>
@@ -91,7 +92,8 @@
             android:layout_weight="1"
             android:background="@drawable/setting_item_selector"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="@dimen/widget_size_30"

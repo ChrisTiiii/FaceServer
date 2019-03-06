@@ -31,7 +31,8 @@
             android:id="@+id/test_view"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/user_of_max_score_tv"

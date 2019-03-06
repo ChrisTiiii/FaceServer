@@ -20,14 +20,18 @@ import android.widget.Toast;
 //import com.bjw.utils.FuncUtil;
 //import com.bjw.utils.SerialHelper;
 import com.example.juicekaaa.fireserver.broadcast.Receiver;
+import com.example.juicekaaa.fireserver.db.DBManager;
+import com.example.juicekaaa.fireserver.manager.FaceSDKManager;
 import com.example.juicekaaa.fireserver.net.Advertisement;
 import com.example.juicekaaa.fireserver.service.MyService;
 import com.example.juicekaaa.fireserver.tcp.TCPManager;
 import com.example.juicekaaa.fireserver.ui.OpenDoorActivity;
 import com.example.juicekaaa.fireserver.utils.FullVideoView;
 import com.example.juicekaaa.fireserver.utils.GlideImageLoader;
+import com.example.juicekaaa.fireserver.utils.GlobalSet;
 import com.example.juicekaaa.fireserver.utils.MessageEvent;
 import com.example.juicekaaa.fireserver.utils.PayPasswordView;
+import com.example.juicekaaa.fireserver.utils.PreferencesUtil;
 import com.example.juicekaaa.fireserver.utils.SosDialog;
 import com.example.juicekaaa.fireserver.utils.VideoUtil;
 import com.example.juicekaaa.fireserver.utils.SerialUtils;
@@ -91,10 +95,36 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
         videoUtil = new VideoUtil(this, video);
         Intent startIntent = new Intent(this, MyService.class);
         startService(startIntent);
-
+        initFace();
         initView();
         //广播注册
         RegisteredBroadcasting();
+    }
+
+    private void initFace() {
+        PreferencesUtil.initPrefs(this);
+        // 使用人脸1：n时使用
+        DBManager.getInstance().init(this);
+        //单目RGB活体, 请选用普通USB摄像头
+        PreferencesUtil.putInt(GlobalSet.TYPE_LIVENSS, GlobalSet.TYPE_RGB_LIVENSS);
+        //生活照
+        PreferencesUtil.putInt(GlobalSet.TYPE_MODEL, GlobalSet.RECOGNIZE_LIVE);
+        FaceSDKManager.getInstance().init(this, new FaceSDKManager.SdkInitListener() {
+            @Override
+            public void initStart() {
+//                toast("开始初始化SDK");
+            }
+
+            @Override
+            public void initSuccess() {
+//                toast("SDK初始化成功");
+            }
+
+            @Override
+            public void initFail(int errorCode, String msg) {
+//                toast("SDK初始化失败:" + msg);
+            }
+        });
     }
 
 
@@ -107,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
             @Override
             public void run() {
                 //加载图片
-//                Advertisement.addImage();
+                Advertisement.addImage();
             }
         }).start();
         //加载本地視頻
